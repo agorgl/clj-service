@@ -1,7 +1,8 @@
 {:paths ["src" "resources"]
  :deps {org.clojure/clojure {:mvn/version "1.11.3"}}
  :aliases
- {:run {:main-opts ["-m" "example.clj-service.core"]}
+ {:dev {:extra-paths ["dev"]}
+  :run {:main-opts ["-m" "example.clj-service.core"]}
   :build {:deps {io.github.clojure/tools.build {:mvn/version "0.10.3"}}
           :ns-default build}
   :test {:extra-paths ["test"]
