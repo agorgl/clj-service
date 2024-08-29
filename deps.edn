@@ -12,7 +12,8 @@
         ring/ring-defaults {:mvn/version "0.5.0"}
         metosin/reitit-core {:mvn/version "0.7.1"}
         metosin/reitit-ring {:mvn/version "0.7.1"}
-        metosin/reitit-middleware {:mvn/version "0.7.1"}}
+        metosin/reitit-middleware {:mvn/version "0.7.1"}
+        hiccup/hiccup {:mvn/version "2.0.0-RC3"}}
  :aliases
  {:dev {:extra-paths ["dev"]}
   :run {:main-opts ["-m" "example.clj-service.core"]}
