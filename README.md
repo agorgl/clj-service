@@ -15,7 +15,11 @@ Run the project's tests:
 
     $ clojure -T:build test
 
-Run the project's CI pipeline and build an uberjar:
+Build an uberjar:
+
+    $ clojure -T:build uber
+
+Or run the project's CI pipeline and build an uberjar in a single invocation:
 
     $ clojure -T:build ci
 
