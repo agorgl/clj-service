@@ -2,7 +2,8 @@
   (:require
    [clojure.tools.logging :as log]
    [ring.adapter.jetty :as jetty]
-   [ring.util.response :as resp]))
+   [ring.util.response :as resp]
+   [ring.middleware.defaults :as ring-defaults]))
 
 (defn index [request]
   (let [body "Hello there"]
@@ -11,7 +12,8 @@
         (resp/content-type "text/html"))))
 
 (defn handler []
-  index)
+  (-> index
+      (ring-defaults/wrap-defaults ring-defaults/site-defaults)))
 
 (defn reloading-ring-handler
   [f]
