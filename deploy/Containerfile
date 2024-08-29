@@ -1,0 +1,28 @@
+#
+# Builder image
+#
+FROM clojure:tools-deps AS builder
+WORKDIR /workdir
+
+COPY deps.edn .
+RUN clojure -P
+
+COPY build.clj .
+COPY src ./src
+COPY resources ./resources
+RUN clojure -T:build uber \
+ && cp $(find target/ -iname *.jar) target/app.jar
+
+#
+# Runner image
+#
+FROM eclipse-temurin:17-jre AS runner
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
+
+RUN useradd -ms /bin/bash user \
+ && chown user:user /usr/src/app
+USER user
+
+COPY --from=builder --chown=user:user /workdir/target/app.jar .
+CMD ["java", "-jar", "app.jar"]
