@@ -5,10 +5,27 @@
    [ring.util.response :as resp]
    [ring.middleware.defaults :as ring-defaults]
    [reitit.core :as reitit]
-   [reitit.ring :as reitit-ring]))
+   [reitit.ring :as reitit-ring]
+   [hiccup2.core :as hiccup]
+   [hiccup.page :as hiccup-page]))
+
+(defn index-page []
+  [:html {:lang "en"}
+   [:head
+    [:meta {:charset "UTF-8"}]
+    [:meta {:name "viewport"
+            :content "width=device-width, initial-scale=1"}]
+    [:title "Hello"]]
+   [:body
+    [:span "Hello there"]]])
+
+(defn html [root]
+  (str
+   (hiccup-page/doctype :html5)
+   (hiccup/html root)))
 
 (defn index [request]
-  (let [body "Hello there"]
+  (let [body (html (index-page))]
     (-> body
         (resp/response)
         (resp/content-type "text/html"))))
