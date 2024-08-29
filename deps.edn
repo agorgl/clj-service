@@ -9,7 +9,10 @@
         ch.qos.logback/logback-classic {:mvn/version "1.5.6"}
         ring/ring-core {:mvn/version "1.12.2"}
         ring/ring-jetty-adapter {:mvn/version "1.12.2"}
-        ring/ring-defaults {:mvn/version "0.5.0"}}
+        ring/ring-defaults {:mvn/version "0.5.0"}
+        metosin/reitit-core {:mvn/version "0.7.1"}
+        metosin/reitit-ring {:mvn/version "0.7.1"}
+        metosin/reitit-middleware {:mvn/version "0.7.1"}}
  :aliases
  {:dev {:extra-paths ["dev"]}
   :run {:main-opts ["-m" "example.clj-service.core"]}
