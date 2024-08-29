@@ -2,14 +2,16 @@
   (:require
    [clojure.tools.logging :as log]
    [integrant.core :as integrant]
+   [example.clj-service.config :as config]
    [example.clj-service.server :as server]))
 
-(defn system-map []
-  {::server {}})
+(defn system-map [config]
+  {::server (-> config :server)})
 
 (defn start []
   (log/info "Starting system")
-  (-> (system-map)
+  (-> (config/config-map)
+      (system-map)
       (integrant/init)))
 
 (defn stop [system]
