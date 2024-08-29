@@ -18,7 +18,7 @@
       (integrant/halt!)))
 
 (defmethod integrant/init-key ::server [_ opts]
-  (server/start))
+  (server/start opts))
 
 (defmethod integrant/halt-key! ::server [_ server]
   (server/stop server))

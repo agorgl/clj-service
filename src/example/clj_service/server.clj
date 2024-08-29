@@ -51,11 +51,15 @@
     ([request] ((f) request))
     ([request respond raise] ((f) request respond raise))))
 
-(defn start []
-  (let [opts {:port 8080
-              :join? false}
+(defn start [{:keys [dev?] :as opts}]
+  (let [opts (merge
+              {:port 8080
+               :join? false}
+              opts)
         handler (let [f (fn [] (handler))]
-                  (reloading-ring-handler f))]
+                  (if dev?
+                    (reloading-ring-handler f)
+                    (f)))]
     (log/info "Starting server")
     (jetty/run-jetty handler opts)))
 
@@ -64,5 +68,5 @@
   (.stop server))
 
 (comment
-  (def server (start))
+  (def server (start {:dev? true}))
   (stop server))
