@@ -3,7 +3,9 @@
    [clojure.tools.logging :as log]
    [ring.adapter.jetty :as jetty]
    [ring.util.response :as resp]
-   [ring.middleware.defaults :as ring-defaults]))
+   [ring.middleware.defaults :as ring-defaults]
+   [reitit.core :as reitit]
+   [reitit.ring :as reitit-ring]))
 
 (defn index [request]
   (let [body "Hello there"]
@@ -11,8 +13,19 @@
         (resp/response)
         (resp/content-type "text/html"))))
 
+(defn routes []
+  ["/" {:get index}])
+
+(defn routes-handler []
+  (reitit-ring/ring-handler
+   (reitit-ring/router (routes))
+   (reitit-ring/routes
+    (reitit-ring/create-resource-handler {:path "/"})
+    (reitit-ring/create-default-handler
+     {:not-found (constantly (resp/not-found "Not found"))}))))
+
 (defn handler []
-  (-> index
+  (-> (routes-handler)
       (ring-defaults/wrap-defaults ring-defaults/site-defaults)))
 
 (defn reloading-ring-handler
