@@ -1,5 +1,7 @@
 (ns example.clj-service.core
+  (:require
+   [clojure.tools.logging :as log])
   (:gen-class))
 
 (defn -main [& args]
-  (println "Hello there!"))
+  (log/info "Hello there!"))
