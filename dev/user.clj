@@ -9,3 +9,5 @@
    (-> (config/config-map)
        (system/system-map)
        (update-vals #(assoc % :dev? true)))))
+
+(go)
