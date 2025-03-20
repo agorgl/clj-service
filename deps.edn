@@ -8,7 +8,7 @@
         org.slf4j/osgi-over-slf4j {:mvn/version "2.0.17"}
         ch.qos.logback/logback-classic {:mvn/version "1.5.18"}
         aero/aero {:mvn/version "1.1.6"}
-        integrant/integrant {:mvn/version "0.10.0"}
+        integrant/integrant {:mvn/version "0.13.1"}
         ring/ring-core {:mvn/version "1.12.2"}
         ring/ring-jetty-adapter {:mvn/version "1.12.2"}
         ring/ring-defaults {:mvn/version "0.5.0"}
@@ -18,7 +18,7 @@
         hiccup/hiccup {:mvn/version "2.0.0-RC3"}}
  :aliases
  {:dev {:extra-paths ["dev"]
-        :extra-deps {integrant/repl {:mvn/version "0.3.3"}}}
+        :extra-deps {integrant/repl {:mvn/version "0.4.0"}}}
   :run {:main-opts ["-m" "example.clj-service.core"]}
   :build {:deps {io.github.clojure/tools.build {:mvn/version "0.10.8"}}
           :ns-default build}
