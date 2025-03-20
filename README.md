@@ -29,6 +29,6 @@ Run that uberjar:
 
 ## License
 
-Copyright © 2024 Loukas Agorgianitis
+Copyright © 2025 Loukas Agorgianitis
 
 Distributed under the Eclipse Public License version 1.0.
