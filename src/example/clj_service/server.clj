@@ -43,7 +43,10 @@
 
 (defn handler []
   (-> (routes-handler)
-      (ring-defaults/wrap-defaults ring-defaults/site-defaults)))
+      (ring-defaults/wrap-defaults
+       (-> ring-defaults/site-defaults
+           (update-in [:static] dissoc :resources)
+           (update-in [:responses] dissoc :content-types)))))
 
 (defn reloading-ring-handler
   [f]
